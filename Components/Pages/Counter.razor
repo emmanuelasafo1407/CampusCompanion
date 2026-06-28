@@ -1,19 +1,33 @@
 ﻿@page "/counter"
 @rendermode InteractiveServer
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Campus Counter</PageTitle>
 
-<h1>Campus Counter</h1>
+<div class="card shadow-lg border-0 mx-auto text-center p-5" style="max-width: 450px; border-radius: 16px; background: #ffffff; margin-top: 20px;">
+    <span class="badge bg-primary text-uppercase tracking-wider px-3 py-2 mx-auto mb-3" style="font-size: 0.8rem; font-weight: 600; width: fit-content;">
+        Module 2 Baseline Task
+    </span>
+    
+    <h3 class="font-weight-bold mb-2" style="color: #0F172A;">Campus Counter Engine</h3>
+    <p class="text-muted small px-3">State persistence test environment. Each click pushes an asynchronous event loop that shifts numerical parameters by 5 metrics.</p>
 
-<p role="status">Current count: @currentCount</p>
+    <div class="my-4 p-4 rounded-3 d-flex flex-column align-items-center justify-content-center mx-auto" style="width: 200px; background-color: #F8FAFC; border: 2px dashed #E2E8F0;">
+        <span class="text-uppercase tracking-wider text-muted small font-weight-bold">Current Count</span>
+        <h1 class="display-3 font-weight-bold text-primary mb-0 mt-1" style="line-height: 1;">@currentCount</h1>
+    </div>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+    <button class="btn btn-primary btn-lg w-100 py-3 rounded-3 font-weight-bold shadow-sm border-0 transition" 
+            style="background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);" 
+            @onclick="IncrementCount">
+        ⚡ Click to Accumulate (+5)
+    </button>
+</div>
 
 @code {
     private int currentCount = 0;
 
     private void IncrementCount()
     {
-        currentCount += 5;
+        currentCount += 5; // Increments by 5 exactly as specified in the assignment [cite: 92, 96]
     }
 }

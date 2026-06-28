@@ -83,3 +83,4 @@ C:\Users\akpor\OneDrive\Desktop\CampusCompanion\CampusCompanion\obj\Debug\net10.
 C:\Users\akpor\OneDrive\Desktop\CampusCompanion\CampusCompanion\obj\Debug\net10.0\CampusCompanion.pdb
 C:\Users\akpor\OneDrive\Desktop\CampusCompanion\CampusCompanion\obj\Debug\net10.0\CampusCompanion.genruntimeconfig.cache
 C:\Users\akpor\OneDrive\Desktop\CampusCompanion\CampusCompanion\obj\Debug\net10.0\ref\CampusCompanion.dll
+C:\Users\akpor\OneDrive\Desktop\CampusCompanion\CampusCompanion\obj\Debug\net10.0\CampusCompanion.sourcelink.json
