@@ -1,0 +1,13 @@
+@page "/live"
+@rendermode InteractiveServer
+
+<div style="padding: 20px;">
+    <h3 style="color: green;">Interactive Server Environment</h3>
+    <h1>@message</h1>
+    <button class="btn btn-success" @onclick="Change">Click me</button>
+</div>
+
+@code {
+    private string message = "Before click";
+    private void Change() => message = "After click";
+}

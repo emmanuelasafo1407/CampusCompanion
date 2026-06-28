@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "UB3W4UhC0Sw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\akpor\\OneDrive\\Desktop\\CampusCompanion\\CampusCompanion\\CampusCompanion.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\akpor\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.8\\microsoft.aspnetcore.app.internal.assets.10.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}

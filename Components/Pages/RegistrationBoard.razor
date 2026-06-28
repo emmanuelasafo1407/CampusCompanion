@@ -1,0 +1,86 @@
+@page "/registration"
+@rendermode InteractiveServer
+
+<div class="container-fluid py-2">
+    <div class="p-4 mb-4 rounded-3 text-white shadow-sm" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);">
+        <h2 class="font-weight-bold mb-1">GCTU Course Registration Hub</h2>
+        <p class="mb-0 text-white-50">Select and pipeline open engineering modules into your academic scheduling array.</p>
+    </div>
+
+    <CascadingValue Value="semesterManifest">
+        <div class="mb-2">
+            <h5 class="text-secondary font-weight-bold mb-3 d-flex align-items-center">
+                <span class="me-2">📚</span> Faculty Department Curriculum Catalog
+            </h5>
+            <div class="d-flex flex-wrap gap-2">
+                @foreach (var entry in catalog)
+                {
+                    <CourseCard Code="@entry.Code" 
+                                Title="@entry.Title" 
+                                Credits="@entry.Credits" 
+                                IsOpen="@entry.IsOpen" 
+                                OnRegister="HandleAddCourse" />
+                }
+            </div>
+        </div>
+    </CascadingValue>
+
+    <Panel Title="Active Selection Array Summary Analysis">
+        @if (selectedCourseCodes.Count == 0)
+        {
+            <div class="text-center py-4">
+                <div class="fs-1 text-muted mb-2">📥</div>
+                <p class="text-muted mb-0">No active course units currently assigned to selection memory stack arrays.</p>
+            </div>
+        }
+        else
+        {
+            <div class="row align-items-center">
+                <div class="col-md-7">
+                    <div class="d-flex flex-wrap gap-2">
+                        @foreach (var targetedCode in selectedCourseCodes)
+                        {
+                            <div class="badge d-flex align-items-center p-2 border shadow-sm text-dark bg-light rounded-3" style="font-size: 0.9rem;">
+                                <span class="text-primary me-2 font-weight-bold">✓</span> @targetedCode
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-5 text-md-end mt-3 mt-md-0">
+                    <div class="p-3 rounded-3 text-dark font-weight-bold d-inline-block border text-center shadow-sm" style="background-color: #ecfdf5; border-color: #a7f3d0 !important;">
+                        <span class="text-muted small text-uppercase block d-block mb-1">Aggregated Workload Capacity</span>
+                        <span class="text-success h4 font-weight-bold mb-0">@TotalSelectedCredits Credit Hours</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </Panel>
+</div>
+
+@code {
+    public record CourseItem(string Code, string Title, int Credits, bool IsOpen);
+    
+    private string semesterManifest = "Semester 2, 2025/2026";
+    private List<string> selectedCourseCodes = new();
+
+    private List<CourseItem> catalog = new()
+    {
+        new CourseItem("ENCE 356", "IoT Standardization Systems", 3, true),
+        new CourseItem("ENCE 312", "Digital Signal Processing", 4, true),
+        new CourseItem("ENCE 304", "Mobile Application Frameworks", 3, false),
+        new CourseItem("ENCE 322", "Data Network Infrastructures", 3, true),
+        new CourseItem("ENCE 388", "Distributed Ledger Technologies", 3, true)
+    };
+
+    private int TotalSelectedCredits => catalog
+        .Where(c => selectedCourseCodes.Contains(c.Code))
+        .Sum(c => c.Credits);
+
+    private void HandleAddCourse(string targetCode)
+    {
+        if (!selectedCourseCodes.Contains(targetCode))
+        {
+            selectedCourseCodes.Add(targetCode);
+        }
+    }
+}

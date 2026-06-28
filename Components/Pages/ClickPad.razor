@@ -1,0 +1,49 @@
+@page "/click-pad"
+@rendermode InteractiveServer
+
+<div class="card shadow-lg border-0 mx-auto text-center p-4" style="max-width: 450px; border-radius: 16px; background: #ffffff;">
+    <h5 class="text-muted font-weight-bold text-uppercase tracking-wider small mb-3">State Synchronization Pulse Pad</h5>
+    
+    <div class="my-4 p-4 rounded-circle bg-light d-flex flex-column align-items-center justify-content-center mx-auto shadow-inner" style="width: 160px; height: 160px; border: 4px solid #f1f5f9;">
+        <h1 class="display-3 font-weight-bold text-primary mb-0" style="line-height: 1;">@count</h1>
+        <span class="badge rounded-pill mt-2 @(count % 2 == 0 ? "bg-success" : "bg-warning text-dark")" style="font-size: 0.75rem; letter-spacing: 0.5px;">@IsEvenOrOdd</span>
+    </div>
+
+    <div class="d-flex gap-2 justify-content-center mb-4">
+        <button class="btn btn-primary px-3 shadow-sm font-weight-bold" @onclick="IncrementByOne">➕ 1 Jump</button>
+        <button class="btn btn-info text-white px-3 shadow-sm font-weight-bold" @onclick="@(e => Add(5))">⚡ 5 Boost</button>
+        <button class="btn btn-outline-danger px-3 font-weight-bold" @onclick="ResetCounter">🔄 Reset</button>
+    </div>
+
+    <hr class="text-muted opacity-25" />
+
+    <button class="btn w-100 py-3 rounded-3 font-weight-bold transition" style="@(isSaving ? "background-color: #64748b; color: white;" : "background-color: #0f172a; color: white;")" @onclick="SimulationSave" disabled="@isSaving">
+        @if (isSaving)
+        {
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            <span>Writing Memory Array...</span>
+        }
+        else
+        {
+            <span>💾 Commit Local Storage Cache</span>
+        }
+    </button>
+</div>
+
+@code {
+    private int count = 0;
+    private bool isSaving = false;
+
+    private string IsEvenOrOdd => (count % 2 == 0) ? "EVEN VALUE" : "ODD VALUE";
+
+    private void IncrementByOne() => count++;
+    private void Add(int magnitude) => count += magnitude;
+    private void ResetCounter() => count = 0;
+
+    private async Task SimulationSave()
+    {
+        isSaving = true;
+        await Task.Delay(1000);
+        isSaving = false;
+    }
+}

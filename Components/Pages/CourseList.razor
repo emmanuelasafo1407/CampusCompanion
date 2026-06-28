@@ -1,0 +1,55 @@
+@page "/courses"
+<PageTitle>Course List</PageTitle>
+
+<div class="card shadow-sm border-0 p-4" style="border-radius: 12px; background: #ffffff;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 style="color: #0f172a; font-weight: 700; margin: 0;">Registered Courses Overview</h4>
+        <span class="badge bg-primary rounded-pill px-3 py-2" style="font-size: 0.9rem;">Total Load: @(courses.Sum(c => c.Credits)) Credits</span>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle" style="border-collapse: separate; border-spacing: 0 8px;">
+            <thead>
+                <tr style="color: #64748b; font-weight: 600; border-bottom: 2px solid #edf2f7;">
+                    <th class="ps-3">Code</th>
+                    <th>Course Title</th>
+                    <th>Credit Hours</th>
+                    <th class="text-end pe-3">Classification</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var course in courses)
+                {
+                    <tr style="background-color: #f8fafc; box-shadow: 0 1px 3px rgba(0,0,0,0.02); transition: transform 0.2s;">
+                        <td class="ps-3 font-weight-bold text-primary" style="border-radius: 8px 0 0 8px; padding: 15px 10px;">@course.Code</td>
+                        <td style="color: #334155;">@course.Title</td>
+                        <td><span class="badge bg-light text-dark border px-2 py-1">@course.Credits Hrs</span></td>
+                        <td class="text-end pe-3" style="border-radius: 0 8px 8px 0;">
+                            @if (course.Credits >= 3)
+                            {
+                                <span class="badge" style="background-color: #fee2e2; color: #ef4444; padding: 6px 12px; border-radius: 6px;">Major Requirement</span>
+                            }
+                            else
+                            {
+                                <span class="badge" style="background-color: #f1f5f9; color: #64748b; padding: 6px 12px; border-radius: 6px;">Elective Units</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    public record Course(string Code, string Title, int Credits);
+
+    private List<Course> courses = new()
+    {
+        new Course("ENCE 356", "IoT Standardization and Systems Engineering", 3),
+        new Course("ENCE 312", "Digital Signal Processing", 3),
+        new Course("ENCE 304", "Mobile Application Development", 3),
+        new Course("ENCE 392", "Embedded Systems Laboratory", 2),
+        new Course("ENCE 322", "Data Communication and Networks", 3)
+    };
+}

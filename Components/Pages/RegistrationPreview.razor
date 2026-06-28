@@ -1,0 +1,68 @@
+@page "/reg-preview"
+@rendermode InteractiveServer
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0 p-4" style="border-radius: 12px; background: #ffffff;">
+            <h4 class="mb-4" style="color: #0f172a; font-weight: 700;">Registration Desk Processing</h4>
+            
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Full Legal Name</label>
+                <input type="text" class="form-control" @bind="fullName" @bind:event="oninput" placeholder="e.g. Martin Ampofo" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Index Number Alignment</label>
+                <input type="text" class="form-control" @bind="indexNumber" @bind:event="oninput" placeholder="e.g. 1232435446" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Academic Programme</label>
+                <input type="text" class="form-control" @bind="programme" @bind:event="oninput" placeholder="e.g. BSc Computer Engineering" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Current Standing Level</label>
+                <select class="form-select" @bind="level">
+                    <option value="100">Level 100 (Freshman)</option>
+                    <option value="200">Level 200 (Sophomore)</option>
+                    <option value="300">Level 300 (Junior)</option>
+                    <option value="400">Level 400 (Senior)</option>
+                </select>
+            </div>
+            <div class="form-check form-switch mt-4 p-3 bg-light rounded">
+                <input type="checkbox" class="form-check-input ms-0 me-2" id="confirmCheck" @bind="confirmed" />
+                <label class="form-check-label font-weight-bold text-secondary" for="confirmCheck">Verify details are correct</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0 h-100" style="border-radius: 12px; background: #ffffff; border-left: 5px solid #3b82f6 !important;">
+            <div class="card-header bg-white py-3 border-0">
+                <span class="text-uppercase tracking-wider small text-muted font-weight-bold">Real-time Verification Stream</span>
+            </div>
+            <div class="card-body p-4 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="mb-3"><span class="text-muted small">Applicant Name</span><h5 class="text-dark">@(string.IsNullOrWhiteSpace(fullName) ? "---" : fullName)</h5></div>
+                    <div class="mb-3"><span class="text-muted small">Index Sequence</span><h5 class="text-dark">@(string.IsNullOrWhiteSpace(indexNumber) ? "---" : indexNumber)</h5></div>
+                    <div class="mb-3"><span class="text-muted small">Course Field Path</span><h5 class="text-dark">@(string.IsNullOrWhiteSpace(programme) ? "---" : programme)</h5></div>
+                    <div class="mb-3"><span class="text-muted small">Class Cohort Standing</span><h5><span class="badge bg-secondary">Level @level</span></h5></div>
+                </div>
+
+                @if (confirmed)
+                {
+                    <div class="alert alert-success border-0 shadow-sm align-items-center mb-0 mt-4 d-flex" role="alert">
+                        <span class="fs-4 me-2">⚡</span>
+                        <div><strong>Data Asserted Secure</strong> — Ready for backend catalog serialization payload compilation loops.</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string fullName = "";
+    private string indexNumber = "";
+    private string programme = "";
+    private string level = "100";
+    private bool confirmed = false;
+}

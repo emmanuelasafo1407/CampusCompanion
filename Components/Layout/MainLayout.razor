@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page" style="font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;">
+    <div class="sidebar" style="background: linear-gradient(180deg, #0A192F 0%, #172A45 100%); box-shadow: 2px 0 10px rgba(0,0,0,0.15);">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4" style="background-color: #ffffff; border-bottom: 1px solid #E2E8F0; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span class="text-muted font-weight-bold">GCTU Campus Companion v1.0</span>
+            <a href="https://learn.microsoft.com/aspnet/core/blazor" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill px-3 ms-3">Documentation</a>
+        </div>
+
+        <article class="content px-4 py-5" style="background-color: #F8FAFC; min-height: calc(100vh - 56px);">
+            <div class="container-fluid" style="max-width: 1200px;">
+                @Body
+            </div>
+        </article>
+    </main>
+</div>
+
+<div id="blazor-error-ui" class="alert alert-danger position-fixed bottom-0 end-0 m-3 shadow" style="display:none; z-index: 1050;">
+    An unhandled error has occurred.
+    <a href="" class="reload btn btn-sm btn-light ms-2">Reload</a>
+    <a class="dismiss close ms-2" style="cursor:pointer;">×</a>
+</div>

@@ -1,0 +1,12 @@
+@page "/inert"
+
+<div style="padding: 20px;">
+    <h3 style="color: red;">Static SSR Environment</h3>
+    <h1>@message</h1>
+    <button class="btn btn-primary" @onclick="Change">Click me</button>
+</div>
+
+@code {
+    private string message = "Before click";
+    private void Change() => message = "After click";
+}

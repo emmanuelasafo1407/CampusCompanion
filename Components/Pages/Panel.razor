@@ -1,0 +1,14 @@
+<div class="card shadow-md border-0 my-4" style="border-radius: 14px; overflow: hidden; background-color: #ffffff;">
+    <div class="py-3 px-4 d-flex align-items-center" style="background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%); color: #ffffff;">
+        <span class="me-2">📋</span>
+        <h5 class="m-0 font-weight-bold" style="font-size: 1rem; letter-spacing: 0.5px;">@Title</h5>
+    </div>
+    <div class="p-4" style="background-color: #ffffff;">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Title { get; set; } = "Analytics Stream Pipeline";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}
